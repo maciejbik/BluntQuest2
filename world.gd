@@ -19,7 +19,7 @@ var hardcore =0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if OS.has_feature("android"):
+	if OS.has_feature("android") or OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios") or OS.has_feature("ios"):
 		var j = joystick.instantiate()
 		add_child(j)
 		j.visible=true
