@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cbemmbih820ts"]
+
+[ext_resource type="Script" uid="uid://bcgt4e8d3xp2m" path="res://blunt.gd" id="1_wgcy2"]
+[ext_resource type="Texture2D" uid="uid://bk18dbdny7hxo" path="res://res/blunt.png" id="2_4urpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbfbk"]
+size = Vector2(165, 137)
+
+[node name="Blunt" type="Area2D" unique_id=362903735]
+collision_layer = 9
+collision_mask = 8
+script = ExtResource("1_wgcy2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1590703831]
+position = Vector2(-35.87629, -29)
+scale = Vector2(0.7010309, 0.7010309)
+texture = ExtResource("2_4urpv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1236036709]
+position = Vector2(-35.5, -29.5)
+shape = SubResource("RectangleShape2D_gbfbk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

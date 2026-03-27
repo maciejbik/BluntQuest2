@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://pupfw3fwprw6"]
+
+[ext_resource type="Texture2D" uid="uid://c43k1b8nipq28" path="res://CRATES.png" id="1_aqk2v"]
+[ext_resource type="Script" uid="uid://bgh1rfoq643gn" path="res://world.gd" id="1_pkg7o"]
+[ext_resource type="PackedScene" uid="uid://bv33up02dscdj" path="res://player.tscn" id="3_dwbse"]
+[ext_resource type="PackedScene" uid="uid://4tkwbd8mi2fh" path="res://wall.tscn" id="3_tlwt5"]
+[ext_resource type="Script" uid="uid://beg4bpn7thoj7" path="res://places.gd" id="5_036b0"]
+[ext_resource type="Texture2D" uid="uid://nkve660p0oy6" path="res://res/heart.png" id="6_dwbse"]
+[ext_resource type="Texture2D" uid="uid://dnbb8nb2orc7w" path="res://res/mandat.jpg" id="7_pkg7o"]
+
+[sub_resource type="Animation" id="Animation_ioo17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-724.00006, -523)]
+}
+
+[sub_resource type="Animation" id="Animation_wse8f"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(409.99988, -42), Vector2(766, 590)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ic0uy"]
+_data = {
+&"RESET": SubResource("Animation_ioo17"),
+&"new_animation": SubResource("Animation_wse8f")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_dwbse"]
+font_size = 30
+
+[node name="World" type="Node2D" unique_id=523923318]
+script = ExtResource("1_pkg7o")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=670918192]
+offset_right = 1162.0
+offset_bottom = 655.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=582771973]
+position = Vector2(596, 343)
+scale = Vector2(1.576188, 1.5494673)
+texture = ExtResource("1_aqk2v")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1528102728]
+modulate = Color(1, 1, 1, 0.6313726)
+position = Vector2(-724.00006, -523)
+scale = Vector2(1.8187759, 2.3622527)
+texture = ExtResource("1_aqk2v")
+
+[node name="Player" parent="." unique_id=737975306 instance=ExtResource("3_dwbse")]
+position = Vector2(569, 143)
+
+[node name="Walls" type="Node" parent="." unique_id=1808061437]
+
+[node name="Wall" parent="Walls" unique_id=1510971775 instance=ExtResource("3_tlwt5")]
+position = Vector2(583, 641)
+scale = Vector2(10.6799965, 1)
+
+[node name="Wall2" parent="Walls" unique_id=1746459953 instance=ExtResource("3_tlwt5")]
+visible = false
+position = Vector2(-36.99997, 261)
+scale = Vector2(1.5999966, 7.279999)
+
+[node name="Wall3" parent="Walls" unique_id=771596398 instance=ExtResource("3_tlwt5")]
+position = Vector2(1189, 236)
+scale = Vector2(1.5999966, 7.279999)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=126652417]
+libraries/ = SubResource("AnimationLibrary_ic0uy")
+autoplay = &"new_animation"
+
+[node name="Places" type="Node" parent="." unique_id=121929974]
+script = ExtResource("5_036b0")
+
+[node name="Node2D" type="Node2D" parent="Places" unique_id=706346362]
+position = Vector2(-282, 79)
+
+[node name="Node2D2" type="Node2D" parent="Places" unique_id=425366622]
+position = Vector2(-289, 283)
+
+[node name="Node2D3" type="Node2D" parent="Places" unique_id=1982831394]
+position = Vector2(-284, 499)
+
+[node name="Node2D4" type="Node2D" parent="Places" unique_id=445964942]
+position = Vector2(1393, 108)
+
+[node name="Node2D5" type="Node2D" parent="Places" unique_id=1647559823]
+position = Vector2(1386, 312)
+
+[node name="Node2D6" type="Node2D" parent="Places" unique_id=1428186013]
+position = Vector2(1391, 528)
+
+[node name="Resp" type="Timer" parent="." unique_id=978805491]
+wait_time = 3.0
+autostart = true
+
+[node name="Hearts" type="Node" parent="." unique_id=1148477816]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Hearts" unique_id=1646919743]
+position = Vector2(506, 40)
+scale = Vector2(0.03125, 0.03125)
+texture = ExtResource("6_dwbse")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hearts" unique_id=1547492969]
+position = Vector2(576, 40)
+scale = Vector2(0.03125, 0.03125)
+texture = ExtResource("6_dwbse")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Hearts" unique_id=947511603]
+position = Vector2(646, 40)
+scale = Vector2(0.03125, 0.03125)
+texture = ExtResource("6_dwbse")
+
+[node name="Timer" type="Timer" parent="." unique_id=1983945047]
+wait_time = 2.0
+autostart = true
+
+[node name="ENDSCREEN" type="Sprite2D" parent="." unique_id=185431622]
+visible = false
+z_index = 200
+position = Vector2(585, 326)
+scale = Vector2(1.6380951, 1)
+texture = ExtResource("7_pkg7o")
+
+[node name="bluntlevel" type="Label" parent="." unique_id=2068677746]
+z_index = 400
+offset_left = 376.0
+offset_top = 85.0
+offset_right = 782.0
+offset_bottom = 131.0
+text = "BLUNT LEVEL: 0%"
+label_settings = SubResource("LabelSettings_dwbse")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Resp" to="Places" method="_on_resp_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

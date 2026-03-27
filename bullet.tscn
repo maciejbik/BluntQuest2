@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b1t54s7t60hi7"]
+
+[ext_resource type="Texture2D" uid="uid://day1q7hts8bvl" path="res://res/asd.webp" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://bc0islrf3y5m2" path="res://bullet.gd" id="1_v8qja"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v8qja"]
+radius = 74.0
+height = 536.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
+size = Vector2(464, 119)
+
+[node name="Bullet" type="RigidBody2D" unique_id=695303027]
+collision_layer = 2
+collision_mask = 14
+gravity_scale = 0.0
+script = ExtResource("1_v8qja")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=620039790]
+scale = Vector2(0.31145835, 0.29865363)
+texture = ExtResource("1_v7oki")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=78936877]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1193098128]
+position = Vector2(-12, 18)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_v8qja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2087687462]
+position = Vector2(-21, 22.5)
+shape = SubResource("RectangleShape2D_v8qja")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
