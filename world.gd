@@ -14,9 +14,16 @@ var game_over=0
 var hardcore =0
 
 
+@onready var jump_button = $"Jump button"
+@onready var joystick = preload("res://addons/addons/joystick_addon/joystick.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if OS.has_feature("android"):
+		var j = joystick.instantiate()
+		add_child(j)
+		j.visible=true
+		j.position = Vector2(200,500)
 	pass # Replace with function body.
 
 func remove_life():
@@ -29,6 +36,10 @@ func remove_life():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	print(hardcore)
+	if Input.is_action_just_pressed("ui_up") and game_over==1:
+		
+		bluntlevel.label_settings.set_font_color(Color.WHITE) 
+		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("ui_reset"):
 		
 		bluntlevel.label_settings.set_font_color(Color.WHITE) 
@@ -68,3 +79,17 @@ func _on_timer_timeout():
 	add_child(b)
 	b.connect("blunt_level",self._on_blunt_blunt_level)
 	b.position=Vector2(randi()%1000,0)
+
+
+func _on_texture_button_button_down():
+	
+	Input.action_press("ui_up")
+	
+	print("xd")
+	pass # Replace with function body.
+
+
+func _on_texture_button_button_up():
+	
+	Input.action_release("ui_up")
+	pass # Replace with function body.
