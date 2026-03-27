@@ -24,6 +24,7 @@ func _ready():
 		add_child(j)
 		j.visible=true
 		j.position = Vector2(200,500)
+		jump_button.visible=true
 	pass # Replace with function body.
 
 func remove_life():
